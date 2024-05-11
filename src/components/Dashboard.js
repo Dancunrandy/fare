@@ -82,7 +82,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <h2>Dashboard</h2>
+      <h2 className="dashboard-title">Dashboard</h2>
       <div className="vehicle-profile">
         <h3>Vehicle Profile</h3>
         <p><strong>Driver's Name:</strong> {vehicleProfile.driverName}</p>

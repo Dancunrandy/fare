@@ -4,16 +4,13 @@ import Header from './components/Header';
 import LoginForm from './components/LoginForm';
 import RegistrationForm from './components/RegistrationForm';
 import Dashboard from './components/Dashboard';
-import videoSrc from './Test.mp4'; 
+import backgroundImage from './images/background.webp'; 
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <video autoPlay muted loop className="video-bg">
-          <source src={videoSrc} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <div className="background-img" style={{backgroundImage: `url(${backgroundImage})`}}/>
         <Header />
         <div className="content">
           <Switch>

@@ -34,26 +34,48 @@
 
 .registration-form {
   position: relative;
-  max-width: 500px; 
-  margin: 0 auto;
+  max-width: 500px;
+  margin: auto;
   background-color: #ffffff;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   padding: 40px;
+  overflow-y: auto; /* Make the form scrollable when necessary */
+  max-height: 80vh; /* Limit the maximum height of the form to 80% of the viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center the form vertically */
 }
-
 
 .content {
   position: relative;
   z-index: 1;
 }
 
-.registration-form h2 {
-  margin-bottom: 30px; /* Add some space below the heading */
-  text-align: center; /* Center the heading */
-  color: #333; /* Dark gray text color */
-  font-size: 32px; /* Larger font size */
+/* Hide the scrollbar but allow scrolling */
+.registration-form {
+  overflow-y: auto; /* Enable vertical scrolling */
+  scrollbar-width: none; /* Hide the scrollbar for Firefox */
+  -ms-overflow-style: none; /* Hide the scrollbar for IE and Edge */
 }
+
+/* Hide the scrollbar for Webkit-based browsers */
+.registration-form::-webkit-scrollbar {
+  display: none;
+}
+
+
+.content-regform {
+  width: 100%;
+}
+
+.registration-form h2 {
+  margin-bottom: 30px;
+  text-align: center;
+  color: #333;
+  font-size: 32px;
+}
+
 
 .registration-form .form-group {
   margin-bottom: 30px; /* Add space between form groups */

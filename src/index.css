@@ -81,10 +81,10 @@
 
 .registration-form .form-group input[type="file"]::file-selector-button {
   padding: 10px;
-  background-color: #4CAF50; /* Blue color for file selector button */
+  background-color: #4CAF50; 
   color: #fff;
   border: none;
-  border-radius: 10px; /* Rounded corners */
+  border-radius: 10px; 
   cursor: pointer;
 }
 
@@ -243,7 +243,7 @@ p a:hover {
 
 .vehicle-profile h3,
 .report h3 {
-  font-family: 'Arial', sans-serif; /* Choose your preferred font */
+  font-family: 'Arial', sans-serif; 
   color: #555; /* Dark gray color */
 }
 
@@ -294,7 +294,7 @@ p a:hover {
 }
 
 .dashboard-title {
-  font-family: 'Arial', sans-serif; /* Choose your preferred font */
+  font-family: 'Arial', sans-serif; 
   color: #333; /* Dark gray color */
 }
 

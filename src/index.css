@@ -17,7 +17,7 @@
 .logo {
   font-size: 2rem; 
   text-decoration: none;
-  color: palegreen;
+  color: #a700b3;
   font-family: 'Garamond', serif; 
   font-weight: bold; 
   letter-spacing: 2px; 
@@ -42,15 +42,6 @@
   padding: 40px;
 }
 
-.video-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1; 
-}
 
 .content {
   position: relative;
@@ -90,7 +81,7 @@
 
 .registration-form .form-group input[type="file"]::file-selector-button {
   padding: 10px;
-  background-color: #007bff; /* Blue color for file selector button */
+  background-color: #4CAF50; /* Blue color for file selector button */
   color: #fff;
   border: none;
   border-radius: 10px; /* Rounded corners */
@@ -98,7 +89,7 @@
 }
 
 .registration-form .form-group input[type="file"]::file-selector-button:hover {
-  background-color: #0056b3; 
+  background-color: #a700b3; 
 }
 
 .registration-form button[type="submit"] {
@@ -106,7 +97,7 @@
   width: 100%;
   padding: 15px;
   font-size: 18px;
-  background-color: #007bff;
+  background-color: #4CAF50;
   color: #fff;
   border: none;
   border-radius: 25px; 
@@ -125,7 +116,7 @@
 }
 
 .registration-form p a {
-  color: #007bff;
+  color: #4CAF50;
   text-decoration: none;
 }
 
@@ -180,7 +171,7 @@
 }
 
 .form-group input:focus {
-  border-bottom-color: #007bff; 
+  border-bottom-color: #4CAF50; 
   outline: none; 
 }
 
@@ -191,7 +182,7 @@ button[type="submit"] {
   max-width: 200px; 
   padding: 12px;
   font-size: 16px;
-  background-color: #007bff;
+  background-color: #4CAF50;
   color: #fff;
   border: none;
   border-radius: 25px;
@@ -211,7 +202,7 @@ p {
 }
 
 p a {
-  color: #007bff;
+  color: #4CAF50;
   text-decoration: none;
 }
 
@@ -307,3 +298,43 @@ p a:hover {
   color: #333; /* Dark gray color */
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  position: relative;
+  overflow: hidden;
+  height: 100vh; /* Set the height of the .App container to 100% of viewport height */
+}
+
+.background-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/home/daniel/fare/src/images/background.webp');
+  background-size: cover;
+  z-index: -1;
+}
+
+/* Add animation effect here */
+@keyframes animateBackground {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.background-img {
+  animation: animateBackground 20s infinite alternate;
+}

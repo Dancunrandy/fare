@@ -4,6 +4,7 @@ import Header from './components/Header';
 import LoginForm from './components/LoginForm';
 import RegistrationForm from './components/RegistrationForm';
 import Dashboard from './components/Dashboard';
+import Footer from './components/Footer';
 import backgroundImage from './images/background.webp'; 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path="/dashboard" component={Dashboard} />
           </Switch>
         </div>
+        <Footer />
       </div>
     </Router>
   );

@@ -17,7 +17,7 @@
 .logo {
   font-size: 2rem; 
   text-decoration: none;
-  color: #a700b3;
+  color:  linear-gradient(135deg, #4A90E2, #9B51E0, #FF5959, #a700b3);
   font-family: 'Garamond', serif; 
   font-weight: bold; 
   letter-spacing: 2px; 
@@ -45,6 +45,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center; /* Center the form vertically */
+  margin-bottom: 70px;
 }
 
 .content {
@@ -103,7 +104,7 @@
 
 .registration-form .form-group input[type="file"]::file-selector-button {
   padding: 10px;
-  background-color: #4CAF50; 
+  background: linear-gradient(135deg, #4A90E2, #9B51E0, #FF5959);
   color: #fff;
   border: none;
   border-radius: 10px; 
@@ -111,7 +112,7 @@
 }
 
 .registration-form .form-group input[type="file"]::file-selector-button:hover {
-  background-color: #a700b3; 
+  background: linear-gradient(135deg, #4A90E2, #9B51E0, #FF5959, #a700b3);
 }
 
 .registration-form button[type="submit"] {
@@ -128,7 +129,7 @@
 }
 
 .registration-form button[type="submit"]:hover {
-  background-color: #a700b3; 
+  background: linear-gradient(135deg, #4A90E2, #9B51E0, #FF5959, #a700b3);
 }
 
 .registration-form p {
@@ -138,7 +139,7 @@
 }
 
 .registration-form p a {
-  color: #4CAF50;
+  color:linear-gradient(135deg, #4A90E2, #9B51E0, #FF5959);
   text-decoration: none;
 }
 
@@ -193,7 +194,7 @@
 }
 
 .form-group input:focus {
-  border-bottom-color: #4CAF50; 
+  border-bottom-color: #9B51E0; 
   outline: none; 
 }
 
@@ -204,7 +205,7 @@ button[type="submit"] {
   max-width: 200px; 
   padding: 12px;
   font-size: 16px;
-  background-color: #4CAF50;
+  background: linear-gradient(135deg, #4A90E2, #9B51E0, #FF5959);
   color: #fff;
   border: none;
   border-radius: 25px;
@@ -213,7 +214,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color: #a700b3;
+  background: linear-gradient(135deg, #4A90E2, #9B51E0, #FF5959, #a700b3);
 }
 
 
@@ -224,7 +225,7 @@ p {
 }
 
 p a {
-  color: #4CAF50;
+  color:linear-gradient(135deg, #4A90E2, #9B51E0, #FF5959);
   text-decoration: none;
 }
 
@@ -279,7 +280,7 @@ p a:hover {
 .report button {
   padding: 10px 20px;
   margin-top: 20px;
-  background-color: #4CAF50; /* Green */
+  background: linear-gradient(135deg, #4A90E2, #9B51E0, #FF5959); /* Green */
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -298,7 +299,7 @@ p a:hover {
 
 .vehicle-profile button:hover,
 .report button:hover {
-  background-color: #b3008f;
+  background: linear-gradient(135deg, #4A90E2, #9B51E0, #FF5959, #a700b3);
   transform: translateY(-1px); /* Move button slightly up on hover */
 }
 
@@ -359,4 +360,53 @@ body {
 
 .background-img {
   animation: animateBackground 20s infinite alternate;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(135deg, #4A90E2, #9B51E0, #FF5959); /* Watercolor gradient */
+  padding: 20px 0; /* Add padding to the top and bottom */
+ 
+}
+
+.container {
+  max-width: 1200px; /* Set maximum width for the content */
+  margin: 0 auto; /* Center the content horizontally */
+}
+
+.footer-content {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space items evenly */
+  align-items: center; /* Align items vertically */
+}
+
+.footer-content p {
+  margin: 0; /* Remove default margin */
+}
+
+.footer-links {
+  list-style-type: none; /* Remove default list styles */
+  padding: 0; /* Remove default padding */
+}
+
+.footer-links li {
+  display: inline; /* Display list items horizontally */
+  margin-right: 10px; /* Add space between list items */
+}
+
+.footer-links li:last-child {
+  margin-right: 0; /* Remove margin from the last list item */
+}
+
+.footer-links a {
+  text-decoration: none; /* Remove underline from links */
+  color: white; /* Set link color */
+  transition: color 0.3s ease; /* Add smooth color transition */
+}
+
+.footer-links a:hover {
+  color: lightblue; /* Change link color on hover */
 }

@@ -1,13 +1,33 @@
 const mongoose = require('mongoose');
 
 const transactionSchema = new mongoose.Schema({
-    amountPaid: Number,
+    amountPaid: {
+        type: Number,
+        restricted: true 
+        
+
+    },
     createdAt: {
         type: Date,
-        default: Date.now
+        default: Date.now,
+        restricted: true 
+        
     },
-    phoneNumber: String,
-    description: String
+    phoneNumber: {
+        type: String,
+        restricted: true 
+        
+    },
+    sacco: {
+        type: String,
+        restricted: false 
+        
+    },
+    fleetNumber: {
+        type: String,
+        restricted: true 
+        
+    }
 });
 
 const Transaction = mongoose.model('Transaction', transactionSchema);

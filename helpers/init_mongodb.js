@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
 mongoose
-.connect('mongodb://localhost:27017', { 
-    dbName: 'fare_auth',
+.connect(process.env.MONGODB_URI, { 
+    dbName: process.env.DB_NAME,
     useNewUrlParser: true,
     })
     .then(() => {

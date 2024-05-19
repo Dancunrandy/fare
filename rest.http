@@ -1,5 +1,7 @@
 GET http://localhost:3000
 
+GET http://localhost:3000/auth/financial-data?fleetNumber=FLEET123
+
 #### Login Route 
 
 POST http://localhost:3000/auth/login
@@ -9,12 +11,23 @@ POST http://localhost:3000/auth/login
 #### Register route 
 POST http://localhost:3000/auth/register
 
+Content-Type: application/json
+
+{
+
+  "email": "test@example.com",
+  "password": "securePassword123"
+}
+
+
 #### Refresh Route
 POST http://localhost:3000/auth/refresh-token
 
 
 #### Logout Route
 DELETE  http://localhost:3000/auth/logout
+
+
 
 
 

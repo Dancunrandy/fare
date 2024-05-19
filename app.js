@@ -2,9 +2,9 @@ const express = require('express');
 const morgan = require('morgan');
 const createError = require('http-errors');
 require('dotenv').config();
-require('./helpers/init_mongodb')
+require('./helpers/init_mongodb');
 
-const AuthRoute = require('./Routes/Auth.route');
+const AuthRoute = require('./Routes/Auth.route')
 
 const app = express();
 
@@ -13,6 +13,7 @@ app.use(morgan('dev'));
 
 // Middleware for parsing JSON bodies
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Handle route
 app.get('/', async (req, res, next) => {

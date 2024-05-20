@@ -9,6 +9,8 @@ const FinancialData = require('../Models/FinancialData.model');
 // Register a new user
 router.post('/register', async (req, res, next) => {
   try {
+    console.log('Request Body:', req.body);
+    
     const { email, password, fleetNumber } = req.body;
 
     if (!email || !password || !fleetNumber) {

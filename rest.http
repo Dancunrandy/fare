@@ -29,7 +29,19 @@ DELETE  http://localhost:3000/auth/logout
 
 # register a bus
 POST http://localhost:3000/auth/register-bus
+Content-Type: application/json
 
+{
+  "fleetNumber": "FLEET254",
+  "numberPlate": "KBC1234"
+}
+
+{
+  "fleetNumber": "FLEET111",
+  "numberPlate": "KKK111"
+}
+
+GET http://localhost:3000/dashboard?fleetNumber=FLEET123"
 
 
 

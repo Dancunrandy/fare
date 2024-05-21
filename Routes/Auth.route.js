@@ -126,7 +126,7 @@ router.get('/dashboard', async (req, res, next) => {
 
     const financialData = await FinancialData.find({ fleetNumber });
 
-    if (!financialData.length) {
+    if (financialData.length === 0) {
       throw createHttpError.NotFound('No financial data found for this fleet number');
     }
 
@@ -137,6 +137,7 @@ router.get('/dashboard', async (req, res, next) => {
     next(error);
   }
 });
+
 
 
 module.exports = router;

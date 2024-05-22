@@ -14,11 +14,15 @@ router.post('/mpesa', async (req, res, next) => {
   try {
     const { fleetNumber, numberPlate, firstName, lastName, email, phoneNumber, amount } = req.body;
 
-    if (!fleetNumber || !numberPlate || !firstName || !lastName || !email || !phoneNumber || !amount) {
-      throw createHttpError.BadRequest('All fields are required');
+    if (!(fleetNumber || numberPlate) || !firstName || !lastName || !email || !phoneNumber || !amount) {
+      throw createHttpError.BadRequest('At least one of fleet number or number plate is required, along with all other fields');
     }
 
-    const matatu = await Matatu.findOne({ fleetNumber, numberPlate });
+    let query = {};
+    if (fleetNumber) query.fleetNumber = fleetNumber;
+    if (numberPlate) query.numberPlate = numberPlate;
+
+    const matatu = await Matatu.findOne(query);
 
     if (!matatu) {
       throw createHttpError.NotFound('Matatu not found');
@@ -31,7 +35,7 @@ router.post('/mpesa', async (req, res, next) => {
       email: email,
       phone_number: phoneNumber,
       amount: amount,
-      api_ref: `Payment for ${fleetNumber} - ${numberPlate}`
+      api_ref: `Payment for ${fleetNumber || numberPlate}`
     });
 
     res.status(200).json(paymentResponse);

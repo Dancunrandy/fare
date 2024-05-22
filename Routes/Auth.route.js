@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const createHttpError = require('http-errors');
 const router = express.Router();
 const User = require('../Models/User.model');
-const Bus = require('../Models/Bus.model');
 const FinancialData = require('../Models/FinancialData.model');
 
 // Register a new user
@@ -89,50 +88,6 @@ router.get('/financial-data', async (req, res, next) => {
     }
 
     res.status(200).json(financialData);
-  } catch (error) {
-    next(error);
-  }
-});
-
-router.post('/register-bus', async (req, res, next) => {
-  try {
-    const { fleetNumber, numberPlate } = req.body;
-
-    if (!fleetNumber || !numberPlate) {
-      throw createHttpError.BadRequest('Fleet number and number plate are required');
-    }
-
-    const existingBus = await Bus.findOne({ fleetNumber });
-    if (existingBus) {
-      throw createHttpError.Conflict(`Bus with fleet number ${fleetNumber} already exists`);
-    }
-
-    const newBus = new Bus({ fleetNumber, numberPlate });
-    await newBus.save();
-
-    res.status(201).json({ message: 'Bus registered successfully' });
-  } catch (error) {
-    next(error);
-  }
-});
-
-router.get('/dashboard', async (req, res, next) => {
-  try {
-    const { fleetNumber } = req.query;
-
-    if (!fleetNumber) {
-      throw createHttpError.BadRequest('Fleet number is required');
-    }
-
-    const financialData = await FinancialData.find({ fleetNumber });
-
-    if (financialData.length === 0) {
-      throw createHttpError.NotFound('No financial data found for this fleet number');
-    }
-
-    const totalIncome = financialData.reduce((total, data) => total + data.dailyIncome + data.weeklyIncome + data.monthlyIncome, 0);
-
-    res.status(200).json({ fleetNumber, totalIncome });
   } catch (error) {
     next(error);
   }

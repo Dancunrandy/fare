@@ -5,19 +5,24 @@ const createHttpError = require('http-errors');
 const router = express.Router();
 const User = require('../Models/User.model');
 const FinancialData = require('../Models/FinancialData.model');
+const Matatu = require('../Models/Matatu.model'); 
 
 // Register a new user
 router.post('/register', async (req, res, next) => {
   try {
-    const { email, password, fleetNumber } = req.body;
+    const { email, password, fleetNumber, numberPlate } = req.body;
 
-    if (!email || !password || !fleetNumber) {
-      throw createHttpError.BadRequest('Email, password and fleet number are required');
+    if (!email || !password || (!fleetNumber && !numberPlate)) {
+      throw createHttpError.BadRequest('Email, password, and either fleet number or number plate are required');
     }
 
-    const existingBus = await Bus.findOne({ fleetNumber });
-    if (!existingBus) {
-      throw createHttpError.NotFound('Bus with this fleet number not found');
+    let matatuQuery = {};
+    if (fleetNumber) matatuQuery.fleetNumber = fleetNumber;
+    if (numberPlate) matatuQuery.numberPlate = numberPlate;
+
+    const existingMatatu = await Matatu.findOne(matatuQuery);
+    if (!existingMatatu) {
+      throw createHttpError.NotFound('Matatu not found');
     }
 
     const existingUser = await User.findOne({ email });
@@ -27,14 +32,15 @@ router.post('/register', async (req, res, next) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUser = new User({ email, password: hashedPassword, fleetNumber });
+    const newUser = new User({ email, password: hashedPassword, fleetNumber: existingMatatu.fleetNumber });
     await newUser.save();
 
-    res.status(201).json({ message: 'User registered successfully', redirectUrl: `/dashboard?fleetNumber=${fleetNumber}` });
+    res.status(201).json({ message: 'User registered successfully', redirectUrl: `/dashboard?fleetNumber=${existingMatatu.fleetNumber}` });
   } catch (error) {
     next(error);
   }
 });
+
 
 // Login a user
 router.post('/login', async (req, res, next) => {

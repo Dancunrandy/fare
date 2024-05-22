@@ -4,38 +4,38 @@ const createError = require('http-errors');
 require('dotenv').config();
 require('./helpers/init_mongodb');
 
-const AuthRoute = require('./Routes/Auth.route')
+const AuthRoute = require('./Routes/Auth.route');
+const MatatuRoute = require('./Routes/Matatu.route');
+const PaymentRoute = require('./Routes/Payment.route');
+const DashboardRoute = require('./Routes/Dashboard.route');
 
 const app = express();
 
-// Middleware for logging HTTP requests
 app.use(morgan('dev'));
-
-// Middleware for parsing JSON bodies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Handle route
 app.get('/', async (req, res, next) => {
   res.send('Hello world...');
 });
 
-// Mount the AuthRoute under the /auth path
 app.use('/auth', AuthRoute);
+app.use('/matatu', MatatuRoute);
+app.use('/payment', PaymentRoute);
+app.use('/dashboard', DashboardRoute);
 
-// Handle 404 errors
 app.use(async (req, res, next) => {
   next(createError.NotFound());
 });
 
-// General error handler
+
 app.use((err, req, res, next) => {
-  res.status(err.status || 500);
-  res.send({
+  console.error(err.stack);
+  res.status(err.status || 500).json({
     error: {
       status: err.status || 500,
-      message: err.message,
-    },
+      message: err.message || 'Internal Server Error'
+    }
   });
 });
 

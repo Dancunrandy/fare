@@ -1,14 +1,18 @@
-const mongoose = require('mongoose')
+// db.js
+const mongoose = require('mongoose');
 
 const connectDb = async () => {
+  const dbUri = process.env.MONGO_URI;
   try {
-    const connect = await mongoose.connect(process.env.connectionString);
-    console.log('Database connected successfully at: ', connect.connection.name)
+    const connect = await mongoose.connect(dbUri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
+    console.log('Database connected successfully at: ', connect.connection.name);
   } catch (err) {
-    console.log(err);
+    console.log('There was an error connecting to MongoDB:', err);
+    throw err;
   }
-
-  // mongoURI: 'mongodb://localhost:27017/tumaFare'
-}
+};
 
 module.exports = connectDb;

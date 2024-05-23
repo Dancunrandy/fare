@@ -80,6 +80,58 @@ router.delete('/logout', async (req, res, next) => {
   res.send('logout route');
 });
 
+
+const crypto = require('crypto');
+const nodemailer = require('nodemailer');
+
+// Request password reset
+router.post('/request-password-reset', async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    if (!email) {
+      throw createHttpError.BadRequest('Email is required');
+    }
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      throw createHttpError.NotFound('User not found');
+    }
+
+    const token = crypto.randomBytes(32).toString('hex');
+    const resetTokenExpiry = Date.now() + 3600000; // Token valid for 1 hour
+
+    user.resetToken = token;
+    user.resetTokenExpiry = resetTokenExpiry;
+    await user.save();
+
+    // Send email
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.EMAIL_PASSWORD
+      }
+    });
+
+    const mailOptions = {
+      to: email,
+      from: process.env.EMAIL,
+      subject: 'Password Reset Request',
+      text: `You are receiving this because you (or someone else) have requested a password reset for your account.\n\n
+      Please click on the following link, or paste this into your browser to complete the process:\n\n
+      http://${req.headers.host}/reset-password/${token}\n\n
+      If you did not request this, please ignore this email and your password will remain unchanged.\n`
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    res.status(200).json({ message: 'Password reset email sent' });
+  } catch (error) {
+    next(error);
+  }
+});
+
+
 // Get financial data for a fleet
 router.get('/financial-data', async (req, res, next) => {
   try {

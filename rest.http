@@ -14,11 +14,10 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-
-  "email": "test@example.com",
-  "password": "securePassword123"
+  "email": "example@gmail.com",
+  "password": "examplePassword123",
+  "fleetNumber":"FLEET123"
 }
-
 
 #### Refresh Route
 POST http://localhost:3000/auth/refresh-token
@@ -31,9 +30,12 @@ DELETE  http://localhost:3000/auth/logout
 POST http://localhost:3000/matatu/register
 Content-Type: application/json
 {
-  "fleetNumber": "FLEET123",
-  "numberPlate": "KAA123A"
+  "fleetNumber": "FLEET1124",
+  "numberPlate": "KAA153B",
+  "sacco":"Umo Inner",
+  "image":"https://i0.wp.com/www.safari254.com/wp-content/uploads/2016/05/Matatus_manyanga.jpg"
 }
+
 
 # Making a Mpesa Payment
 POST http://localhost:3000/payment/mpesa
@@ -49,8 +51,7 @@ POST http://localhost:3000/payment/mpesa
 }
 
 
-GET http://localhost:3000/dashboard?fleetNumber=FLEET123"
-
+GET http://localhost:3000/dashboard?fleetNumber=FLEET123
 
 
 

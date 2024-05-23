@@ -36,7 +36,7 @@ router.post('/register', async (req, res, next) => {
     const newUser = new User({ email, password: hashedPassword, fleetNumber: existingMatatu.fleetNumber });
     await newUser.save();
 
-    res.status(201).json({ message: 'User registered successfully', redirectUrl: `dashboard/dashboard?fleetNumber=${existingMatatu.fleetNumber}` });
+    res.status(201).json({ message: 'User registered successfully', redirectUrl: `dashboard?fleetNumber=${existingMatatu.fleetNumber}` });
   } catch (error) {
     next(error);
   }
@@ -63,11 +63,14 @@ router.post('/login', async (req, res, next) => {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
+    // Redirect to the dashboard URL with the JWT token as a query parameter
     res.status(200).json({ token });
   } catch (error) {
     next(error);
   }
 });
+
+
 
 // Request password reset
 router.post('/request-password-reset', async (req, res, next) => {

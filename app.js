@@ -22,7 +22,7 @@ app.get('/', async (req, res, next) => {
 app.use('/auth', AuthRoute);
 app.use('/matatu', MatatuRoute);
 app.use('/payment', PaymentRoute);
-app.use('/dashboard', DashboardRoute);
+app.use('/', DashboardRoute);
 
 app.use(async (req, res, next) => {
   next(createError.NotFound());

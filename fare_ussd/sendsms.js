@@ -1,6 +1,8 @@
+require('dotenv').config();
+
 const credentials = {
-    apiKey: process.env.AT_SANDBOX_APIKEY,
-    username: process.env.AT_SANDBOX_USERNAME
+    apiKey: process.env.AT_APP_APIKEY,
+    username: process.env.AT_APP_USERNAME
 }
 const AfricasTalking = require('africastalking')(credentials);
 

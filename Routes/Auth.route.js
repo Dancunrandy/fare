@@ -2,10 +2,12 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const createHttpError = require('http-errors');
+const crypto = require('crypto');
+const nodemailer = require('nodemailer');
 const router = express.Router();
 const User = require('../Models/User.model');
 const FinancialData = require('../Models/FinancialData.model');
-const Matatu = require('../Models/Matatu.model'); 
+const Matatu = require('../Models/Matatu.model');
 
 // Register a new user
 router.post('/register', async (req, res, next) => {
@@ -41,7 +43,6 @@ router.post('/register', async (req, res, next) => {
   }
 });
 
-
 // Login a user
 router.post('/login', async (req, res, next) => {
   try {
@@ -68,21 +69,6 @@ router.post('/login', async (req, res, next) => {
     next(error);
   }
 });
-
-
-// Refresh token route (if needed)
-router.post('/refresh-token', async (req, res, next) => {
-  res.send('refresh route');
-});
-
-// Logout a user
-router.delete('/logout', async (req, res, next) => {
-  res.send('logout route');
-});
-
-
-const crypto = require('crypto');
-const nodemailer = require('nodemailer');
 
 // Request password reset
 router.post('/request-password-reset', async (req, res, next) => {
@@ -131,6 +117,47 @@ router.post('/request-password-reset', async (req, res, next) => {
   }
 });
 
+// Reset password
+router.post('/reset-password/:token', async (req, res, next) => {
+  try {
+    const { token } = req.params;
+    const { password } = req.body;
+
+    if (!password) {
+      throw createHttpError.BadRequest('Password is required');
+    }
+
+    const user = await User.findOne({
+      resetToken: token,
+      resetTokenExpiry: { $gt: Date.now() } // Check if the token has expired
+    });
+
+    if (!user) {
+      throw createHttpError.BadRequest('Invalid or expired token');
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    user.password = hashedPassword;
+    user.resetToken = undefined;
+    user.resetTokenExpiry = undefined;
+    await user.save();
+
+    res.status(200).json({ message: 'Password reset successfully' });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Refresh token route (if needed)
+router.post('/refresh-token', async (req, res, next) => {
+  res.send('refresh route');
+});
+
+// Logout a user
+router.delete('/logout', async (req, res, next) => {
+  res.send('logout route');
+});
 
 // Get financial data for a fleet
 router.get('/financial-data', async (req, res, next) => {
@@ -150,7 +177,5 @@ router.get('/financial-data', async (req, res, next) => {
     next(error);
   }
 });
-
-
 
 module.exports = router;

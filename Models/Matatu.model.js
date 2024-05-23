@@ -16,6 +16,10 @@ const MatatuSchema = new Schema({
     type: String,
     required: true,
   },
+  sacco: {
+    type: String,
+    required: true,
+  },
 });
 
 const Matatu = mongoose.model('Matatu', MatatuSchema);

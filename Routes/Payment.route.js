@@ -38,7 +38,13 @@ router.post('/mpesa', async (req, res, next) => {
       api_ref: `Payment for ${fleetNumber || numberPlate}`
     });
 
-    res.status(200).json(paymentResponse);
+    // Customize the payment success message
+    const customMessage = `Payment successful for Matatu ${fleetNumber || numberPlate}. Thank you for your payment!`;
+
+    res.status(200).json({
+      message: customMessage,
+      paymentResponse: paymentResponse
+    });
   } catch (error) {
     next(error);
   }

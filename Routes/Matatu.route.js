@@ -12,10 +12,10 @@ const intasend = new IntaSend(
 
 router.post('/register', async (req, res, next) => {
   try {
-    const { fleetNumber, numberPlate } = req.body;
+    const { fleetNumber, numberPlate, sacco, image } = req.body;
 
-    if (!fleetNumber || !numberPlate) {
-      throw createHttpError.BadRequest('Fleet number and number plate are required');
+    if (!fleetNumber || !numberPlate || !sacco) {
+      throw createHttpError.BadRequest('Fleet number, number plate, and sacco are required');
     }
 
     // Check for existing matatu with the same fleet number or number plate
@@ -26,7 +26,7 @@ router.post('/register', async (req, res, next) => {
       throw createHttpError.Conflict('Matatu with the same fleet number or number plate already exists');
     }
 
-    const newMatatu = new Matatu({ fleetNumber, numberPlate });
+    const newMatatu = new Matatu({ fleetNumber, numberPlate, sacco, image });
 
     let wallets = intasend.wallets();
     const walletResponse = await wallets.create({

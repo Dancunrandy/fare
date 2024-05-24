@@ -1,70 +1,150 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Nauli Pay
 
-## Available Scripts
+This is a fleet management web application built with React.js. The application allows users to register and log in to manage vehicle profiles and view reports on trips made and profit/loss.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- User registration with vehicle details.
+- User login with vehicle registration number and password.
+- Dashboard displaying vehicle profile and trip reports.
+- Ability to update and delete vehicle profiles.
+- Background Gif on the landing page for enhanced user experience.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Prerequisites
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Before you begin, ensure you have met the following requirements:
 
-### `npm test`
+- Node.js and npm installed on your machine.
+- A backend server to handle API requests for vehicle and report data.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+To install and set up the application, follow these steps:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/your-username/fare-management-app.git
+    cd fare-management-app
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Create a `.env` file to store your environment variables (if needed).
 
-### `npm run eject`
+4. Start the application:
+    ```bash
+    npm start
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The app should now be running at `http://localhost:3000`.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## File Structure
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Here's a brief overview of the project's file structure:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+.
+├── public
+│   ├── index.html
+│   ├── Test.mp4
+│   └── ...
+├── src
+│   ├── components
+│   │   ├── Dashboard.js
+│   │   ├── Header.js
+│   │   ├── LoginForm.js
+│   │   ├── RegistrationForm.js
+│   │   └── ...
+│   ├── images
+│   │   └── Test.mp4
+│   ├── index.css
+│   ├── index.js
+│   └── App.js
+├── .gitignore
+├── package.json
+└── README.md
+```
 
-## Learn More
+## Components
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### `Header.js`
+The header component contains the navigation bar with links to the login and registration pages.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### `LoginForm.js`
+The login form component allows users to log in using their vehicle registration number and password.
 
-### Code Splitting
+### `RegistrationForm.js`
+The registration form component allows users to register by providing their vehicle registration number, fleet number, sacco name, and password.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### `Dashboard.js`
+The dashboard component displays the vehicle profile, trip report, and buttons to update and delete the profile.
 
-### Analyzing the Bundle Size
+## CSS Styling
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+CSS files for styling components:
 
-### Making a Progressive Web App
+- `index.css`: Main CSS file for global styles.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+## Backend Integration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+For the purpose of demonstration, the data fetching functions in the `Dashboard.js` component use hardcoded values. In a real-world scenario, these functions should fetch data from your backend API.
 
-### Deployment
+Example of a fetch request to get vehicle data:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```jsx
+const fetchVehicleData = async () => {
+  try {
+    const response = await fetch('/api/vehicle');
+    if (!response.ok) {
+      throw new Error('Failed to fetch vehicle data');
+    }
+    const data = await response.json();
+    setVehicleProfile(data);
+  } catch (error) {
+    console.error('Error fetching vehicle data:', error.message);
+  }
+};
+```
 
-### `npm run build` fails to minify
+## Running Tests
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+To run tests, use the following command:
+
+```bash
+npm test
+```
+
+## Deployment
+
+To deploy the application, follow these steps:
+
+1. Build the application:
+    ```bash
+    npm run build
+    ```
+
+2. Deploy the contents of the `build` directory to your web server or hosting service.
+
+## Contributing
+
+Contributions are welcome! Please follow these steps to contribute:
+
+1. Fork the repository.
+2. Create a new branch.
+3. Make your changes and commit them.
+4. Push to your fork and submit a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+## Acknowledgements
+
+- [React.js](https://reactjs.org/)
+- [Create React App](https://create-react-app.dev/)
+- [React Router](https://reactrouter.com/)

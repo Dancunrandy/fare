@@ -11,7 +11,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <div className="background-img" style={{backgroundImage: `url(${backgroundImage})`}}/>
+        {/* <div className="background-img" style={{backgroundImage: `url(${backgroundImage})`}}/> */}
         <Header />
         <div className="content">
           <Switch>

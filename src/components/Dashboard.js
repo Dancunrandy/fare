@@ -4,11 +4,11 @@ import '../index.css';
 const Dashboard = () => {
   // Dummy data for demonstration
   const [vehicleProfile, setVehicleProfile] = useState({
-    vehicleRegNumber: '',
-    fleetNumber: '',
-    saccoName: '',
+    vehicleRegNumber: 'KDD 254 Y',
+    fleetNumber: 'Fleet123',
+    saccoName: 'Ummoinner',
     profilePhoto: '', 
-    driverName: '' 
+    driverName: 'Delvis' 
   });
 
   const [report, setReport] = useState({
@@ -94,8 +94,8 @@ const Dashboard = () => {
       </div>
       <div className="report">
         <h3>Report</h3>
-        <p><strong>Number of Trips Made:</strong> {report.tripsMade}</p>
-        <p><strong>Profit/Loss Made:</strong> ${report.profitLoss}</p>
+        <p><strong>Number of Trips Made:</strong> 8</p>
+        <p><strong>Total Income:</strong> Ksh10000</p>
       </div>
     </div>
   );

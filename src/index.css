@@ -384,27 +384,27 @@ body {
 }
 
 .footer-content p {
-  margin: 0; /* Remove default margin */
+  margin: 0; 
 }
 
 .footer-links {
-  list-style-type: none; /* Remove default list styles */
-  padding: 0; /* Remove default padding */
+  list-style-type: none;
+  padding: 0; 
 }
 
 .footer-links li {
-  display: inline; /* Display list items horizontally */
-  margin-right: 10px; /* Add space between list items */
+  display: inline; 
+  margin-right: 10px; 
 }
 
 .footer-links li:last-child {
-  margin-right: 0; /* Remove margin from the last list item */
+  margin-right: 0; 
 }
 
 .footer-links a {
-  text-decoration: none; /* Remove underline from links */
-  color: white; /* Set link color */
-  transition: color 0.3s ease; /* Add smooth color transition */
+  text-decoration: none; 
+  color: white; 
+  transition: color 0.3s ease; 
 }
 
 .footer-links a:hover {
